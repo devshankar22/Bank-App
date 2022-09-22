@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ {% load static %}
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+ <title>Admin Portal</title>
+ <script src="{% static 'js/all.js' %}"></script>
+ <link rel="stylesheet" href="{% static 'css/adminstyle.css' %}" />
+ <style>
+  
+  /* body{
+    background: url("{% static 'images/bg.jpg' %}");
+  } */
+  body{
+  background:  linear-gradient(rgba(0,0,0,0.7),rgba(255,255,255,0.1)), url("{% static 'images/atm_img.jpg' %}")center/cover fixed no-repeat;
+    }
+
+   .back_icon{
+     background-color: transparent;
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     font-size: 48px;
+     color: #f1f1f1;
+     position: fixed;
+     display: block;
+     left: 30%;
+     top: 3%;
+  }
+
+  .back_icon:hover{
+     font-size: 50px;
+  }
+  </style>
+</head>
+
+<body>
+  <a href="home_portal" class="back_icon">
+   <i class="fa-solid fa-user"></i>
+  </a>
+ <section>
+  <div class="section-title">
+   <h1>Welcome To Admin Portal</h1>
+  </div>
+  <div class="section-center projects-center">
+   <!-- single project -->
+   <a href="newuser" class="project-1">
+    <article class="project">
+     <img src="{% static 'images/project-1.jpg' %}" alt="single project" class="project-img" />
+     <div class="project-info">
+      <h4>Create New Bank Account</h4>
+      <p>click Here</p>
+     </div>
+    </article>
+   </a>
+   <!-- end of single project -->
+   <!-- single project -->
+   <a href="blockuser" class="project-2">
+    <article class="project">
+     <img src="{% static 'images/project-2.jpg' %}" alt="single project" class="project-img" />
+     <div class="project-info">
+      <h4>Block User Account</h4>
+      <p>Click Here</p>
+     </div>
+    </article>
+   </a>
+   <!-- end of single project -->
+   <!-- single project -->
+   <a href="search" class="project-3">
+    <article class="project">
+     <img src="{% static 'images/project-3.jpg' %}" alt="single project" class="project-img" />
+     <div class="project-info">
+      <h4>Edit/Update User Account</h4>
+      <p>Click Here</p>
+     </div>
+    </article>
+   </a>
+   <!-- end of single project -->
+   <!-- single project -->
+   <a href="transsearch" class="project-4">
+    <article class="project">
+     <img src="{% static 'images/project-4.jpg' %}" alt="single project" class="project-img" />
+     <div class="project-info">
+      <h4>Reverse Transactions</h4>
+      <p>click Here</p>
+     </div>
+    </article>
+   </a>
+   <!-- end of single project -->
+   <a href="passwd" class="project-5">
+    <article class="project">
+     <img src="{% static 'images/project-5.jpg' %}" alt="single project" class="project-img" />
+     <div class="project-info">
+      <h4>Change Password</h4>
+      <p>Click Here</p>
+     </div>
+    </article>
+   </a>
+  </div>
+ </section>
+</body>
+</html>

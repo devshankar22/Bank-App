@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ {% load static %}
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Payment Gateway</title>
+ <!-- Css Linking -->
+ <link rel="stylesheet" href="{% static 'css/newuser.css' %}">
+ <script>
+
+  function success() {
+   let topay = document.getElementById("topay").value;
+   let oldbal = "{{user.balance}}"
+   let newbal = oldbal - topay;
+   if (newbal>0) {
+    alert("payment has Successfull...\nNow Your remaining Balance is "+newbal);
+   } else {
+     alert("Payment is Unsuccessful...");
+   }
+  }
+
+
+  function validation() {
+   let topay = document.getElementById("topay").value;
+   let oldbal = "{{user.balance}}"
+   let newbal = oldbal-topay;
+   if (0 < topay <= oldpay ) {
+    document.getElementById("submit").disabled = false;
+   } else {
+    document.getElementById("submit").disabled = true;
+   }
+  }
+ </script>
+ <style>
+  /* body {
+   background: url("{% static 'images/bg.jpg' %}");
+   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+   background-size: cover;
+   background-attachment: fixed;
+  }
+   */
+   body{
+  background:  linear-gradient(rgba(0,0,0,0.7),rgba(255,255,255,0.1)), url("{% static 'images/atm_img.jpg' %}")center/cover fixed no-repeat;
+    }
+  .form{
+   height: 400px;
+   border-radius: 25px;
+  }
+   h3 {
+   color: #000;
+   font-size: 30px;
+   text-align: center;
+   padding-bottom: 10px;
+  }
+  .btn2{
+   width: 200px;
+  }
+  .btn{
+    margin-top: 30px;
+  }
+  .change_btn{
+    display: block;
+    width: 500px;
+    height: 46px;
+    text-transform: capitalize;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    line-height: 46px;
+    padding-top: 0;
+  }
+
+  .change_btn:hover{
+    display: block;
+    width: 500px;
+    height: 46px;
+    text-transform: capitalize;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    line-height: 46px;
+    padding-top: 0;
+    margin-top: 30px;
+  }
+
+  .cancel_btn{
+   background-color: rgb(110, 110, 110);
+   color: black;
+   margin-left: 20px;
+   font-size: 24px;
+   width: 120px;
+   margin-top: 30px;
+  }
+  .cancel_btn:hover{
+   background-color: rgb(110, 110, 116);
+   color: black;
+   margin-left: 20px;
+   font-size: 24px;
+   width: 120px;
+ }
+ .cancel_link{
+   display: block;
+ }
+ 
+ .backbtn{
+  display: block;
+  position: absolute;
+  left: 54%;
+  top: 70%;
+  font-size: 28px;
+  font-weight: 400;
+ }
+
+ .payment-btn{
+  display: block;
+  font-size: 35px;
+  position: relative;
+  top: 65%;
+  left: -20%;
+  border: none;
+ }
+ .back{
+  display: block;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  color: white;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+ }
+
+ input[type='submit']:enabled{
+  font-size: 22px;
+ }
+  input[type='submit']:disabled{
+  cursor: not-allowed;
+ }
+  .formgroup{
+   margin-top: 30px;
+  }
+ span{
+  font-size: 20px;
+  color: white;
+ }
+
+ .makepayment:enabled{
+  background: transparent;
+  color: antiquewhite;
+  border-radius: 6px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+ }
+ </style>
+</head>
+
+<body>
+ <form action="custlog" method="POST">{% csrf_token %}
+  <div class="backbtn">
+   <input type="hidden" name='custid' value="{{user.custid}}">
+   <input type="submit" name="backbtn" value="Back" class="back">
+  </div>
+ </form>
+ </form>
+ </div>
+ <div class="container">
+  <div class="form">
+   <h3>Transaction Section</h3>
+   <form action="update_trans" method="post" class="signUp" onsubmit="success()">{% csrf_token %}
+    <div class="formgroup group1">
+     <span class="balspan">Your Balance : </span><span>{{user.balance}}</span>
+    </div>
+    <input type="hidden" name="custid" value="{{user.custid}}">
+    <div class="formgroup group2">
+     <input type="number" name="receive" id="receive" placeholder="Send to [Cust id]" required>
+    </div>
+    <div class="formgroup group3">
+     <input type="number" name="topay" id="topay"  placeholder="Amount to Pay" min="1" max="{{ user.balance }}" required>
+    </div>
+    </div>
+    <div class="formgroup btn payment-btn">
+     <input type="submit" value="Make Payment" name="makepayment" class="makepayment" id="submit">
+    </div>
+   </form>
+  </div>
+ </div>
+</body>
+
+</html>

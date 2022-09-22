@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ {% load static %}
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta charset="utf-8">
+ <title>Login Page</title>
+ <link rel="stylesheet" href="{% static 'css/style.css' %}">
+ <script>
+  window.alert("User Account Has Been Updated Successfull...");
+ </script>
+ <style>
+  section {
+   background: linear-gradient(rgba(0,0,0,0.7),rgba(255,255,255,0.1)), url("{% static 'images/atm_img.jpg' %}")center/cover fixed no-repeat;
+  }
+ </style>
+</head>
+
+<body>
+ <section>
+  <div class="box">
+
+   <div class="form">
+    <img src="{% static 'images/profile.png' %}" class="user" alt="">
+    <h2>Login to your Account</h2>
+    <form class="" action="login" method="POST" enctype="multipart/form-data">{% csrf_token %}
+     <div class="inputBx">
+      <input type="number" name="custid" placeholder="Customer Id" id="username" oninput="validation()" pattern="[0-9]"
+       required autofocus>
+      <img src="{% static 'images/user.png' %}" alt="user_icon">
+     </div>
+     <div class="inputBx">
+      <input type="password" name="passwd" id="password" placeholder="Passward" oninput="validation()" required>
+      <img src="{% static 'images/lock.png' %}" alt="">
+     </div>
+     <label class="remeber"><input type="checkbox"> Remember Me</label>
+     <div class="inputBx">
+      <input type="submit" name="log" value="Login" id="submit" disabled>
+     </div>
+     <div class="inputBx admin_btn">
+      <input type="submit" name="adminlog" value="Admin Login" id="admin_submit" disabled>
+     </div>
+    </form>
+   </div>
+
+  </div>
+ </section>
+ <script type="text/javascript">
+  function validation() {
+   let username = document.getElementById("username").value;
+   let pass = document.getElementById("password").value;
+   if (username != "" && pass != "") {
+    document.getElementById("submit").disabled = false;
+    document.getElementById("admin_submit").disabled = false;
+   } else {
+    document.getElementById("submit").disabled = true;
+    document.getElementById("admin_submit").disabled = true;
+   }
+  }
+ </script>
+</body>
+
+</html>

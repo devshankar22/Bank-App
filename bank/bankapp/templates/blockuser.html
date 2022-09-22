@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ {% load static %}
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Block User</title>
+ <!-- Css Linking -->
+ <link rel="stylesheet" href="{% static 'css/newuser.css' %}">
+ <script>
+  function not_required() {
+    document.getElementById("custid").value = "0";
+    document.getElementById("custid").required = false;
+   }
+
+  function success() {
+   alert("User Has Been Blocked...");
+  }
+ </script>
+ <style>
+  /* body {
+   background: url("{% static 'images/bg.jpg' %}");
+   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+   background-size: cover;
+   background-attachment: fixed;
+  } */
+
+  body{
+  background:  linear-gradient(rgba(0,0,0,0.7),rgba(255,255,255,0.1)), url("{% static 'images/atm_img.jpg' %}")center/cover fixed no-repeat;
+    }
+
+  .form {
+   height: 100px;
+   width: 450px;
+  }
+
+  h3 {
+   color: #000;
+   font-size: 20px;
+   font-weight: 400;
+   text-align: center;
+   padding-bottom: 10px;
+  }
+
+  .btn {
+   margin-top: 55px;
+  }
+
+  .heading-txt {
+   margin-right: 20px;
+  }
+  
+ .cancel_btn{
+   background-color: rgb(110, 110, 110);
+   color: black;
+   margin-left: 20px;
+  }
+  .cancel_btn:hover{
+   box-shadow: 2px 3px 18px #3c3c3c;
+   background-color: rgb(110, 110, 116);
+   color: black;
+ }
+ .cancel_link{
+   display: block;
+ }
+
+ </style>
+</head>
+
+<body>
+ <div class="container">
+  <div class="form">
+   <h3>Enter Customer Id To Block User</h3>
+   <form action="block_success" method="POST" class="signUp"> {% csrf_token %}
+    <div class="formgroup">
+     <input type="number" name="custid" id="custid" placeholder="Customer Id" required>
+    </div>
+    <div class="formgroup btn signup-btn">
+     <button class="btn2 block">Block User</button>
+     <a href="adminlog" class="cancel_link">
+      <button class="btn2 cancel_btn" onclick="not_required()">Back</button>
+     </a>
+    </div>
+   </form>
+  </div>
+ </div>
+</body>
+
+</html>

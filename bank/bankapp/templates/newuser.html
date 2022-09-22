@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ {% load static %}
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Sign Up Page</title>
+ <!-- Css Linking -->
+ <link rel="stylesheet" href="{% static 'css/newuser.css' %}">
+ <script>
+
+  function success() {
+    alert("User has been created successfully...");
+   }
+   function validation() {
+      let repass = document.getElementById("passwd").value;
+      let pass = document.getElementById("repasswd").value;
+      if (repass != pass) {
+        document.getElementById("submit").disabled = true;
+      } else {
+        document.getElementById("submit").disabled = false;
+      }
+    }
+
+    function not_required(){
+      document.getElementById("bal").value = "";
+      document.getElementById("name").required = false;
+      document.getElementById("passwd").required = false;
+      document.getElementById("repasswd").required = false;
+      document.getElementById("bal").required = false;
+      document.getElementById("email").required = false;
+    }
+
+    function verify(){
+      let verifybal = document.getElementById("bal");
+      if(verifybal.checkValidity() && checkValidEmail()){
+        success()
+      }
+    }
+
+    function checkValidEmail(){
+      let emailId = document.getElementById("email").value;
+      let regex = new RegExp("([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])");
+      if(regex.test(emailId)==false){
+        emailId="";
+        alert("Please enter a Valid Email id ");
+        return false;
+      }
+      return true;
+    }
+
+ </script>
+ <style>
+  /* body {
+   background: url("{% static 'images/bg.jpg' %}");
+   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+   /* min-height: 100vh; */
+   /* background: linear-gradient(45deg, #ffcc5c 20%, #3c3c3c 20% 50%, #ff6f69 50% 80%, #96ceb4 80%); */
+  body{
+  background:  linear-gradient(rgba(0,0,0,0.7),rgba(255,255,255,0.1)), url("{% static 'images/atm_img.jpg' %}")center/cover fixed no-repeat;
+    }
+    
+  .custid{
+    text-transform: capitalize;
+    color: white;
+    font-size: 1.5rem;
+    margin-left: 80px;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+  }
+  .input_name{
+    margin-top: 20px;
+  }
+  .bank_title{
+    width: 100%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: blanchedalmond;
+    /* position: absolute; */
+    font-size: 2.4rem;
+    text-shadow: 1px 1px 2px rgb(247, 0, 255), 0 0 1em rgb(68, 0, 255), 0 0 0.6em green; 
+    text-transform: capitalize;
+  } 
+  .form{
+    border-radius: 7px;
+    margin-top: 60px;
+  }
+
+ .cancel_btn{
+   background-color: rgb(110, 110, 110);
+   color: black;
+   margin-left: 20px;
+  }
+  .cancel_btn:hover{
+   box-shadow: 2px 3px 18px #3c3c3c;
+   background-color: rgb(110, 110, 116);
+   color: black;
+ }
+ .cancel_link{
+   display: block;
+ }
+ .bank_title{
+  margin: auto 2px;
+  text-align: center;
+ }
+
+ @media screen and (max-width: 480px) {
+  .bank_title{
+    font-size: 15px;
+    text-align: center;
+  }
+  .bank-header{
+    display: none;
+  }
+ }
+ .conatiner{
+  transform: translateY(-15%);
+ }
+ </style>
+</head>
+
+<body>
+<div class="container">
+  <div class="form">
+   <span class="custid">Customer Id : {{custid}}</span>
+   <form action="user_created" method="post" class="signUp">{% csrf_token %}
+    <div class="formgroup input_name">
+     <input type="text" name="name" id="name" placeholder="Name" required>
+    </div>
+    <div class="formgroup">
+     <input type="password" name="passwd" id="passwd" placeholder="Password" oninput="validation()" required>
+    </div>
+    <div class="formgroup">
+     <input type="password" name="repasswd" id="repasswd" placeholder="Confirm Password" required oninput="validation()">
+    </div>
+    <div class="formgroup">
+      <input type="email" class="email" name="email" id="email" placeholder="Enter email id " required>
+     </div>
+     <div class="formgroup">
+      <input type="number" class="balance" name="bal" id="bal" placeholder="Enter Balance " min="1" max="1000000" required>
+     </div>
+    <div class="checkbox">
+     <input type="checkbox" name="checkbox" id="checkbox">
+     <span class="text">
+      I Agree with Terms and Conditions.
+     </span>
+    </div>
+    <div class="formgroup btn signup-btn">
+     <button class="btn2 sign_btn" onclick="verify()" id="submit" disabled>Sign Up</button>
+     <a href="adminlog.html" class="cancel_link">
+     <button class="btn2 cancel_btn" id="myButton" onclick="not_required()">Cancel</button>
+    </a>
+    </div>
+    </div>
+   </form>
+  </div>
+ </div>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ {% load static %}
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Sign Up Page</title>
+ <!-- Css Linking -->
+ <link rel="stylesheet" href="{% static 'css/newuser.css' %}">
+ <script src="{% static 'js/all.js' %}"></script>
+ <script>
+
+  function success() {
+   alert("User has been created successfully...");
+  }
+  function validation() {
+   let repass = document.getElementById("passwd").value;
+   let pass = document.getElementById("repasswd").value;
+   if (repass != pass) {
+    document.getElementById("submit").disabled = true;
+   } else {
+    document.getElementById("submit").disabled = false;
+   }
+  }
+
+  function verify() {
+   let verifybal = document.getElementById("bal");
+   if (verifydate.checkValidity()) {
+    success()
+   }
+  }
+ </script>
+ <style>
+  /* body {
+   background: url("{% static 'images/bg.jpg' %}");
+   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; -->
+    /* min-height: 100vh; */
+    /* background: linear-gradient(45deg, #ffcc5c 20%, #3c3c3c 20% 50%, #ff6f69 50% 80%, #96ceb4 80%); */
+  /* background: linear-gradient( -25deg, #03a9f4 0%, #3a78b7 50%, #262626 50%, #607d8d 100%); */
+    /* backdrop-filter: hue-rotate(120deg); */
+    /* Buttons Hover Effect Create  */
+    .btns{
+  width: 200px;
+  height: 60px;
+  background: none;
+  border: 4px solid;
+  /* color: red; */
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 16px;
+  position: relative;
+}
+
+.btns::before,.btns::after{
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 4px;
+  background: #353b48;
+  transform: skewX(50deg);
+  transition: .4s linear;
+}
+
+.btns::before{
+  top: -4px;
+  left: 10%;
+}
+
+.btns::after{
+  bottom: -4px;
+  right: 10%;
+}
+
+.btns:hover::before{
+  left: 80%;
+}
+
+.btns:hover::after{
+  right: 80%;
+}
+    body{
+  background:  linear-gradient(rgba(0,0,0,0.7),rgba(255,255,255,0.1)), url("{% static 'images/atm_img.jpg' %}")center/cover fixed no-repeat;
+    }
+
+
+  .custid {
+   text-transform: capitalize;
+   color: white;
+   font-size: 1.5rem;
+   margin-left: 80px;
+   margin-bottom: 40px;
+   padding-bottom: 30px;
+  }
+
+  .input_name {
+   margin-top: 20px;
+  }
+
+  .bank_title {
+   font-family: Georgia, 'Times New Roman', Times, serif;
+   color: blanchedalmond;
+   position: absolute;
+   font-size: 3.4rem;
+   top: 4%;
+   transform: translate(30%, 10%);
+   text-shadow: 1px 1px 2px rgb(247, 0, 255), 0 0 1em rgb(68, 0, 255), 0 0 0.6em green;
+   text-transform: capitalize;
+  }
+
+  .form {
+   border-radius: 7px;
+   margin-top: 60px;
+   height: 480px;
+  }
+
+  .cancel_btn {
+   background-color: rgb(110, 110, 110);
+   color: black;
+   margin-left: 20px;
+  }
+
+  .cancel_btn:hover {
+   box-shadow: 2px 3px 18px #3c3c3c;
+   background-color: rgb(110, 110, 116);
+   color: black;
+  }
+
+  .cancel_link {
+   display: block;
+  }
+
+ .signout_icon{
+     background-color: transparent;
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     font-size: 48px;
+     color: grey;
+     position:absolute;
+     right: 6%;
+     top: 10%;
+  }
+  .custid{
+   font: 800;
+   font-size: 28px;
+  }
+
+
+  .formgroup{
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   align-content: center;
+   flex-direction: column;
+  }
+
+  .customer_title{
+   font-size: 30px;
+   margin-bottom: 15px;
+   color: #000;
+   text-align: center;
+   padding-right: 10px;
+  }
+
+  .cust_dets{
+  margin-top: 20px;
+   display: block;
+  }
+
+  .customer_dets{
+   display: block;
+   color: whitesmoke;
+  }
+
+  .cancel_link{
+   /* border-radius: 6px; */
+   transition: 0.3s linear;
+  }
+
+  .cancel_btn{
+   /* color: #fff; */
+   padding-right: 10px;
+  }
+
+  
+  .form .cancel_link input[type="submit"]{
+    display: block;
+    height: 100%;
+    width: 100%;
+    border: none;
+    text-align: center;
+    font-size: 12px;
+  }
+  
+ .form .cancel_link input[type="submit"]:hover{
+    cursor: pointer;
+  }
+  .btns{
+    background-color: transparent;
+  }
+
+  .btn1{
+    color: rgb(231, 137, 137);
+    margin-top: 30px;
+  }
+  .btn2{
+  color: #cda535;
+}
+
+.btn3{
+  color: rgb(124, 189, 124);
+}
+
+.btns:hover{
+  background: transparent;
+}
+
+.btn1:hover{
+  color: rgb(231, 137, 137);
+}
+
+.btn2:hover{
+  color: #cda535;
+}
+.btn3:hover{
+  color: rgb(124, 189, 124);
+}
+
+ #myButton1{
+   color: rgb(231, 137, 137);
+   border-radius: 0px;
+ }
+ #myButton2{
+   color: #cda535;
+   border-radius: 0px;
+ }
+ #myButton3{
+  color: rgb(124, 189, 124);
+  border-radius: 0px;
+  margin-top: 20px;
+ }
+
+ .cancel_btn{
+   border-radius: 0px;
+ }
+
+ </style>
+</head>
+
+<body>
+ <div class="Bank-header">
+  <h1 class="bank_title">Welcome to Planned Pay Bank</h1>
+ </div>
+ <a href="home_portal" class="signout">
+  <i class="fa fa-sign-out signout_icon" aria-hidden="true"></i>
+ </a>
+ <div class="container">
+  <div class="form">
+    <span class="custid customer_title">Customer Details</span>
+    <div class="formgroup">
+      <form action="custForm" method="post">{% csrf_token %}
+       <input type="hidden" name="hidden_custid" value="{{user.custid}}">
+     <div class="cust_dets cust_cust-id">
+     <span class="customer_dets">Customer Id : {{user.custid}}</span>
+     </div>
+     <div class="customer_dets cust_cust-name">
+     <span class="cust_dets cust_cust-name">Name : {{user.name}}</span>
+     </div>
+     <div class="customer_dets cust_cust-bal">
+     <span class="cust_dets">Balance : {{user.balance}}</span>
+     </div>
+     <div class="customer_dets cust_cust-date">
+     <span class="cust_dets">Open Date : {{user.open_date}}</span>
+     </div>
+    <div class="formgroup btn signup-btn">
+    <div class="cancel_link">
+      <button class="btn1 cancel_btn btns" id="myButton1"><input type="submit" name="changepasswd"
+          value="Change Password"></button>
+    </div>
+     <div class="cancel_link">
+      <button class="btn2 cancel_btn btns" id="myButton2"><input type="submit" name="sendmoney" value="Send Money"></button>
+     </div>
+     <div class="cancel_link">
+      <button class="btn3 cancel_btn btns" id="myButton3"><input type="submit" name="showtrans" value="Show Transactions"></button>
+     </div>
+    </div>
+  </div>
+  </div>
+ </div>
+</body>
+
+</html>

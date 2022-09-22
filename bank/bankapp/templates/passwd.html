@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ {% load static %}
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Change Password </title>
+ <!-- Css Linking -->
+ <link rel="stylesheet" href="{% static 'css/newuser.css' %}">
+ <script>
+  function success() {
+   alert("Password has been Change SuccessFully...");
+  }
+
+  function prevcheck() {
+   let data = "{{data}}"
+   let prepass = document.getElementById("prevpasswd").value;
+   if (data != prepass)
+   {
+    alert("Please Enter Valid Previous Admin Password....");
+    return false;
+   }
+   else{
+    return true;
+   }
+  }
+
+   function not_required() {
+      document.getElementById("prevpasswd").value = "";
+      document.getElementById("prevpasswd").required = false;
+      document.getElementById("passwd").required = false;
+      document.getElementById("repasswd").required = false;
+    }
+
+  function validation() {
+   let repass = document.getElementById("passwd").value;
+   let pass = document.getElementById("repasswd").value;
+   if (repass == pass && prevcheck()) {
+    document.getElementById("submit").disabled = false;
+   } else {
+    document.getElementById("submit").disabled = true;
+   }
+  }
+ </script>
+ <style>
+  /* body {
+   background: url("{% static 'images/bg.jpg' %}");
+   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+   background-size: cover;
+   background-attachment: fixed;
+  } */
+  body{
+  background:  linear-gradient(rgba(0,0,0,0.7),rgba(255,255,255,0.1)), url("{% static 'images/atm_img.jpg' %}")center/cover fixed no-repeat;
+    }
+  .form{
+   height: 200px;
+   border-radius: 25px;
+  }
+   h3 {
+   color: #000;
+   font-size: 28px;
+   font-weight: 400;
+   text-align: center;
+   padding-bottom: 10px;
+  }
+  .btn2{
+   width: 200px;
+  }
+  .btn{
+    margin-top: 30px;
+  }
+  .change_btn{
+    display: block;
+    width: 500px;
+    height: 46px;
+    text-transform: capitalize;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    line-height: 46px;
+    padding-top: 0;
+  }
+
+  .change_btn:hover{
+    display: block;
+    width: 500px;
+    height: 46px;
+    text-transform: capitalize;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    line-height: 46px;
+    padding-top: 0;
+    margin-top: 30px;
+  }
+
+  .cancel_btn{
+   background-color: rgb(110, 110, 110);
+   color: black;
+   margin-left: 20px;
+   font-size: 24px;
+   width: 120px;
+   margin-top: 30px;
+  }
+  .cancel_btn:hover{
+   background-color: rgb(110, 110, 116);
+   color: black;
+   margin-left: 20px;
+   font-size: 24px;
+   width: 120px;
+ }
+ .cancel_link{
+   display: block;
+ }
+
+ </style>
+</head>
+
+<body>
+ <div class="container">
+  <div class="form">
+   <h3>Change Password</h3>
+   <form action="update_passwd" method="post" class="signUp">{% csrf_token %}
+    <div class="formgroup">
+     <input type="password" name="prevpasswd" id="prevpasswd" placeholder="Enter Prev Password" required>
+    </div>
+    <div class="formgroup">
+     <input type="password" name="passwd" id="passwd" placeholder="Password" oninput="prevcheck()" required>
+    </div>
+    <div class="formgroup">
+     <input type="password" name="repasswd" id="repasswd" placeholder="Confirm Password" required
+      oninput="validation()">
+    </div>
+    <div class="formgroup btn signup-btn">
+     <button class="btn2 change_btn" onclick="success()" id="submit" disabled >Change Password</button>
+    <a href="adminlog" class="cancel_link">
+      <button class="btn2 cancel_btn" id="back2admin" onclick="not_required()">Cancel</button>
+    </a>
+    </div>
+   </form>
+  </div>
+ </div>
+</body>
+
+</html>

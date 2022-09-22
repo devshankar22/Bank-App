@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+ <title>Transactions Data</title>
+ <style>
+  * {
+   margin: 0;
+   padding: 0;
+   outline: 0;
+  }
+
+  .filter {
+
+   left: 0;
+   top: 0;
+   bottom: 0;
+   right: 0;
+   z-index: 1;
+   background: rgb(238, 174, 202);
+   background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+   height: 300vh;
+  }
+
+  table {
+   width: 60%;
+   border-collapse: collapse;
+   border-spacing: 0;
+   box-shadow: 0 2px 15px rgba(64, 64, 64, .7);
+   border-radius: 12px 12px 0 0;
+   overflow: hidden;
+
+  }
+
+  td,
+  th {
+   padding: 15px 20px;
+   text-align: center;
+
+
+  }
+
+  th {
+   background-color: #ba68c8;
+   color: #fafafa;
+   font-family: 'Open Sans', Sans-serif;
+   font-weight: 200;
+   text-transform: uppercase;
+
+  }
+
+  tr {
+   width: 100%;
+   background-color: #fafafa;
+   font-family: 'Montserrat', sans-serif;
+  }
+
+  tr:nth-child(even) {
+   background-color: #eeeeee;
+  }
+
+  h1 {
+   color: white;
+   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+  }
+  
+  input[type="submit"]{
+   position: absolute;
+   background: transparent;
+   color: #eeeeee;
+   display: block;
+   font-size: 20px;
+   top: 5%;
+   left: 8%;
+   border: none;
+   font-weight: 500;
+   outline: none;
+   position: fixed;
+  }
+  input[type="submit"]:hover{
+   cursor: pointer;
+   color: rgb(116, 108, 108);
+  }
+  
+  .space_around{
+    margin-top: 200px;
+  }
+ </style>
+</head>
+
+<body>
+ <form action="custlog" method="POST">{% csrf_token %}
+  <div class="backbtn">
+  <input type="hidden" name='custid' value="{{user.custid}}">
+  <input type="submit" name="backbtn" value="Back">
+  </div>
+</form>
+ <center>
+  <div class="filter">
+   <font face='aerial' size=5 color=white>
+    <br><br>
+    <h1 class='Heading'>Credit</h1><br>
+  </font>
+  <table class="tableClass">
+    <tr>
+      <th>Trans. id</th>
+      <th>Sender</th>
+      <th>Sender Name</th>
+      <th>Receiver</th>
+      <th>Receiv. Name</th>
+      <th>Amount</th>
+      <th>Date of trans.</th>
+      <th>status</th>
+    </tr>
+    {% for key , val in cred.items %}
+    <tr>
+      <td>{{ key }}</td>
+      <td>{{ val.0.senderid }}</td>
+      <td>{{ val.1.sendername }}</td>
+      <td>{{ user.custid }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ val.2.amount }}
+      <td>{{ val.3.dot }}</td>
+      <td>Success</td>
+    </tr>
+    {% endfor %}
+  </table></br>
+    <h1 class='Heading space_around'>Debit</h1><br>
+  <table class="table2">
+    <tr>
+      <th>Trans. id</th>
+      <th>Sender</th>
+      <th>Sender Name</th>
+      <th>Receiver id</th>
+      <th>Receiv. Name</th>
+      <th>Amount</th>
+      <th>Date of trans.</th>
+      <th>status</th>
+    </tr>
+    {% for key , val in deb.items %}
+    <tr>
+      <td>{{ key }}</td>
+      <td>{{ user.custid }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ val.0.receiverid }}</td>
+      <td>{{ val.1.receivername }}</td>
+      <td>{{ val.2.amount }}</td>
+      <td class="set_td">{{ val.3.dot }}</td>
+      <td>Success</td>
+    </tr>
+    {% endfor %}
+  </table>
+   <center>
+</body>

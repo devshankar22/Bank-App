@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ {% load static %}
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Edit User Page</title>
+ <!-- Css Linking -->
+ <link rel="stylesheet" href="{% static 'css/newuser.css' %}">
+ <script>
+
+  function not_required() {
+      document.getElementById("name").value = "";
+      document.getElementById("name").required = false;
+      document.getElementById("custid").required = false;
+      document.getElementById("passwd").required = false;
+      document.getElementById("bal").required = false;
+      document.getElementById("email").required = false;
+    }
+
+
+  function verification(){
+   let verifydate = document.getElementById("date");
+   let verifybal = document.getElementById("bal");
+
+   if(verifydate.checkValidity() && verifybal.checkValidity()){
+     success()
+   }
+  }
+
+  function success() {
+   alert("User Data Updated...");
+  }
+
+
+ </script>
+ <style>
+
+    body{
+  background:  linear-gradient(rgba(0,0,0,0.7),rgba(255,255,255,0.1)), url("{% static 'images/atm_img.jpg' %}")center/cover fixed no-repeat;
+    }
+
+  .form{
+   height: 500px;
+   width: 480px;
+  }
+
+  h3{
+   color: #000;
+   margin-bottom: 30px;
+   font-size: 28px;
+   font-weight: 400;
+   text-align: center;
+   padding-bottom: 10px;
+  }
+  .usr-data{
+   color: #000;
+   margin-right: 25px;
+   font-weight: 500;
+   font-family: Georgia, 'Times New Roman', Times, serif;
+   font-weight: 500;
+  }
+  .btn{
+   margin-top: 20px;
+  }
+  .cancel_btn{
+   background-color: rgb(110, 110, 110);
+   color: black;
+   margin-left: 20px;
+  }
+  .cancel_btn:hover{
+   box-shadow: 2px 3px 18px #3c3c3c;
+   background-color: rgb(110, 110, 116);
+   color: black;
+ }
+ .cancel_link{
+   display: block;
+ }
+ #passwd{
+  margin-left: 22px;
+}
+#name{
+  margin-left: 40px;
+}
+.bal{
+  padding-right: 100px;
+}
+ </style>
+</head>
+
+<body>
+ <div class="container">
+  <div class="form">
+   <h3>User Data</h3>
+   <form action="update_success" method="POST" class="signUp">{% csrf_token %}
+    <div class="formgroup">
+     <span class="usr-data Customer Id">Customer Id</span>
+     <input type="number" name="custid" id="custid" value="{{form.custid}}" required>
+    </div>
+    <div class="formgroup">
+     <span class="usr-data name">Name</span>
+     <input type="text" name="name" id="name" value="{{form.name}}" required>
+    </div>
+    <div class="formgroup">
+     <span class="usr-data passwd">Password</span>
+     <input type="text" name="passwd" id="passwd" value="{{form.passwd}}" required>
+    </div>
+    <div class="formgroup">
+      <span class="usr-data email">EMail</span>
+      <input type="email" name="email" id="email" value="{{form.email}}" required>
+    </div>
+    <div class="formgroup">
+     <span class="usr-data bal">Balance</span>
+     <input type="number" name="bal" id="bal" value="{{form.balance}}" min="1" max="1000000" required>
+    </div>
+    <div class="formgroup btn signup-btn">
+     <button class="btn2" onclick="verification()">Update</button>
+    <a href="adminlog" class="cancel_link">
+      <button class="btn2 cancel_btn" onclick="not_required()">Cancel</button>
+    </a>
+    </div>
+   </form>
+  </div>
+ </div>
+</body>
+</html>
